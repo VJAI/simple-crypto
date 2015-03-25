@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.disusered.simplecrypto" version="0.2.0">
+  <name>SimpleCrypto</name>
+  <js-module name="SimpleCrypto" src="www/SimpleCrypto.js">
+    <clobbers target="cordova.plugins.SimpleCrypto" />
+  </js-module>
+  <platform name="ios">
+    <config-file parent="/*" target="config.xml">
+      <feature name="SimpleCrypto">
+        <param name="ios-package" value="SimpleCrypto" />
+      </feature>
+    </config-file>
+    <framework src="Foundation.framework" />
+    <framework src="Security.framework" />
+    <source-file src="src/ios/SimpleCrypto.m" />
+    <header-file src="src/ios/RNCryptor+Private.h" />
+    <header-file src="src/ios/RNCryptor-Prefix.pch" />
+    <header-file src="src/ios/RNCryptor.h" />
+    <source-file src="src/ios/RNCryptor.m" />
+    <header-file src="src/ios/RNCryptorEngine.h" />
+    <source-file src="src/ios/RNCryptorEngine.m" />
+    <header-file src="src/ios/RNDecryptor.h" />
+    <source-file src="src/ios/RNDecryptor.m" />
+    <header-file src="src/ios/RNEncryptor.h" />
+    <source-file src="src/ios/RNEncryptor.m" />
+  </platform>
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="SimpleCrypto">
+        <param name="android-package" value="com.disusered.simplecrypto.SimpleCrypto" />
+      </feature>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml" />
+    <source-file src="src/android/jncryptor-1.0.1.jar" target-dir="libs"/>
+    <source-file src="src/android/SimpleCrypto.java" target-dir="src/com/disusered/simplecrypto/SimpleCrypto" />
+  </platform>
+</plugin>
