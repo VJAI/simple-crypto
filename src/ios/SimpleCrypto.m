@@ -3,7 +3,6 @@
 #import <Foundation/Foundation.h>
 #import <Security/SecRandom.h>
 #import <Cordova/CDV.h>
-#import <Cordova/NSData+Base64.h>
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
 
@@ -46,10 +45,12 @@
 
         // Log encrypted value
         NSLog(@"Encryption Key: %@", key);
-        NSLog(@"Encrypted base64: %@", [encryptedData base64EncodedString]);
+        
+        NSLog(@"Encrypted base64: %@", [encryptedData base64EncodedStringWithOptions:0]);
 
         // Send success status and encrypted data as base64 string
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[encryptedData base64EncodedString]];
+        
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[encryptedData base64EncodedStringWithOptions:0]];
     } else {
         // Send error status
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Nothing to encrypt"];
@@ -74,7 +75,7 @@
     if (dataToDecrypt != nil && [dataToDecrypt length] > 0 && key != nil && [key length] > 0) {
 
         // Convert from base64 to NSData
-        NSData *parsedDataToDecrypt = [NSData dataFromBase64String:dataToDecrypt];
+        NSData *parsedDataToDecrypt = [[NSData alloc] initWithBase64EncodedString:dataToDecrypt options:0];
 
         // Decrypt data
         NSError *error;
