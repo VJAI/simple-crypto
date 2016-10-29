@@ -47,7 +47,7 @@ rncryptor.encrypt(key, 'My data to encode', successCallback, failureCallback);
 
 ### iOS
 
-This plugin uses the Objective-C implementation of [RNCryptor](https://github.com/RNCryptor/RNCryptor). RNCryptor is a CCCryptor (AES encryption) wrapper for iOS and Mac. The data format includes all the metadata required to securely implement AES encryption. It is returned as a base64 string using [NSData+Base64](https://github.com/l4u/NSData-Base64). The encrypted blob includes:
+This plugin uses the Objective-C implementation of [RNCryptor](https://github.com/RNCryptor/RNCryptor). RNCryptor is a CCCryptor (AES encryption) wrapper for iOS and Mac. The data format includes all the metadata required to securely implement AES encryption. It is returned as a base64 string ~~using [NSData+Base64](https://github.com/l4u/NSData-Base64)~~. The encrypted blob includes:
 
 * AES-256 encryption
 * CBC mode
