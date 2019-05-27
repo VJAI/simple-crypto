@@ -43,6 +43,33 @@ function successCallback(encryptedData) {
 rncryptor.encrypt(key, 'My data to encode', successCallback, failureCallback);
 ```
 
+### Usage with promises
+Useless cyclical example.
+
+```javascript
+var rncryptor = cordova.require("com.disusered.simplecrypto.SimpleCrypto");
+
+var key = 'myKey';
+
+function failureCallback(error) {
+    console.log('Error: ' + error);
+}
+
+function successCallback(encryptedData) {
+    console.log('Encrypted data: ' + encryptedData);
+    rncryptor.decrypt(key, encryptedData,
+        function successCallback(decryptedData) {
+            console.log('Decrypted data: ' + decryptedData);
+        }, failureCallback);
+}
+
+rncryptor.encrypt(key, 'My data to encode')
+  .then(successCallback)
+  .catch(failureCallback);
+```
+
+
+
 ## RNCryptor
 
 ### iOS
@@ -62,4 +89,4 @@ This plugin uses the Java implementation of RNCryptor, [JNCryptor](https://githu
 
 ## Todo
 - ~~User defined key~~
-- ES6 Promises
+
